@@ -220,7 +220,8 @@ public class AddressBook {
             System.out.println(contactName + "doesn't exists");
         }
     }
-//Ability to add multiple person to Address Book   :
+
+    //Ability to add multiple person to Address Book   :
     void addMultipleContacts() throws Exception {
         System.out.print("add multiple contacts to address book:");
         String contactName = scanner.nextLine();
@@ -239,6 +240,57 @@ public class AddressBook {
         } else {
             System.out.println(contactName + " is not empty contact or it is not created");
             System.out.println("use other option c to create multiple contact");
+        }
+    }
+
+    //UC8 Ability to search Person in a City or State across the multiple Address Book - Search Result
+    public class YAAddressBook {
+        private static String first;
+        private static String last;
+        private static String choice;
+        private static String searchA;
+        private static Scanner keybd = new Scanner(System.in);
+        private String street;
+        private String cityState;
+        private String zip;
+        private int answer = 0;
+
+        public static int search(ArrayList<YAAddressBook> aBook) {
+            System.out.print("Please Enter Field to Search: ");
+            choice = keybd.nextLine();
+
+            System.out.print("Please Enter Value to Search For: ");
+            searchA = keybd.nextLine();
+
+            switch (choice) {
+                case "1":
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                default:
+                    break;
+            }
+            return -2;
+        }
+
+        public void addEntry() {
+            YAAddressBook aBook = new YAAddressBook();
+            System.out.print("Please Enter First Name: ");
+            first = keybd.nextLine();
+            System.out.print("Please Enter Last Name: ");
+            last = keybd.nextLine();
+            System.out.print("Please Enter Street Address: ");
+            street = keybd.nextLine();
+            System.out.print("Please Enter City, State: ");
+            cityState = keybd.nextLine();
+            System.out.print("Please Enter Zip Code: ");
+            zip = keybd.nextLine();
         }
     }
 

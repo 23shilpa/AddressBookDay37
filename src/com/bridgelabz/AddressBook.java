@@ -8,10 +8,13 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+//Ability to create a Contacts in Address Book with first and last names, address, city, state, zip, phone number and email...
+
 public class AddressBook {
     public static void main(String[] args) {
 
     }
+
     static String firstNamePattern = "^[a-zA-Z][a-zA-Z ]*$";
     static String lastNamePattern = "^[a-zA-Z][a-zA-Z ]*$";
     static String addressPattern = "^[a-zA-Z0-9-,. ]+$";
@@ -63,7 +66,7 @@ public class AddressBook {
         return input;
     }
 
-    //given fields are added into contact
+    //Ability to add a new Contact to Address Book
     void fillContactDetails() throws Exception {
         System.out.print("enter empty contact name which is going to be filed:");
         String contactName = scanner.nextLine();
@@ -85,18 +88,17 @@ public class AddressBook {
         }
 
     }
-//Ability to add new contacts:
+
+    //Ability to add new contacts:
     void editContactInfo() throws Exception {
         System.out.print("enter name of the contact to edit:");
         String contactName = scanner.nextLine();
-        //if given file is empty
+
         if (emptyContacts.contains(contactName)) {
             System.out.println(contactName + " is empty!");
-            System.out.println("pleast fill the contact " + contactName + " before editing it");
+            System.out.println("please fill the contact " + contactName + " before editing it");
             return;
-        }
-
-        else if (!nonEmptyContacts.contains(contactName)) {
+        } else if (!nonEmptyContacts.contains(contactName)) {
             System.out.println(contactName + " does not exits!");
             System.out.println("please create the contact " + contactName + " before editing it");
             return;
@@ -196,35 +198,48 @@ public class AddressBook {
                 break;
         }
     }
-//Ability to delete contacts:
-void deleteContact()
-{
-    System.out.print("enter contact name to delete:");
-    String contactName = scanner.nextLine().trim();
-    File file = new File(contactName);
-    if(file.exists())
-    {
-        if(file.delete())
-        {
-            if(emptyContacts.contains(contactName))
-            {
-                emptyContacts.remove(contactName);
-            }
-            else
-            {
-                nonEmptyContacts.remove(contactName);
-            }
-            System.out.println(contactName + " is deleted succesfully");
-        }
-        else
-        {
-            System.out.println("file deletion failed");
-        }
 
+    //Ability to delete contacts:
+    void deleteContact() {
+        System.out.print("enter contact name to delete:");
+        String contactName = scanner.nextLine().trim();
+        File file = new File(contactName);
+        if (file.exists()) {
+            if (file.delete()) {
+                if (emptyContacts.contains(contactName)) {
+                    emptyContacts.remove(contactName);
+                } else {
+                    nonEmptyContacts.remove(contactName);
+                }
+                System.out.println(contactName + " is deleted succesfully");
+            } else {
+                System.out.println("file deletion failed");
+            }
+
+        } else {
+            System.out.println(contactName + "doesn't exists");
+        }
     }
-    else
-    {
-        System.out.println(contactName + "doesn't exists");
+//Ability to add multiple person to Address Book   :
+    void addMultipleContacts() throws Exception {
+        System.out.print("add multiple contacts to address book:");
+        String contactName = scanner.nextLine();
+        if (emptyContacts.contains(contactName)) {
+            String details = "";
+            details += takeInput("first name", firstNamePattern) + "\n";
+            details += takeInput("last name", lastNamePattern) + "\n";
+            details += takeInput("address", addressPattern) + "\n";
+            details += takeInput("city", cityPattern) + "\n";
+            details += takeInput("state", statePattern) + "\n";
+            details += takeInput("zip code", zipPattern) + "\n";
+            details += takeInput("phone number", phoneNumberPattern) + "\n";
+            writeFile(contactName, details);
+            emptyContacts.remove(contactName);
+            System.out.println("the given fields are successfully added in " + contactName);
+        } else {
+            System.out.println(contactName + " is not empty contact or it is not created");
+            System.out.println("use other option c to create multiple contact");
+        }
     }
-}
+
 }

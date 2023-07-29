@@ -196,4 +196,35 @@ public class AddressBook {
                 break;
         }
     }
+//Ability to delete contacts:
+void deleteContact()
+{
+    System.out.print("enter contact name to delete:");
+    String contactName = scanner.nextLine().trim();
+    File file = new File(contactName);
+    if(file.exists())
+    {
+        if(file.delete())
+        {
+            if(emptyContacts.contains(contactName))
+            {
+                emptyContacts.remove(contactName);
+            }
+            else
+            {
+                nonEmptyContacts.remove(contactName);
+            }
+            System.out.println(contactName + " is deleted succesfully");
+        }
+        else
+        {
+            System.out.println("file deletion failed");
+        }
+
+    }
+    else
+    {
+        System.out.println(contactName + "doesn't exists");
+    }
+}
 }
